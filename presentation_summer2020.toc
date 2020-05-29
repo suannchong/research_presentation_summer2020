@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{\scshape Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{\scshape Prior Work}{6}{0}{2}
+\beamer@sectionintoc {3}{\scshape Current Work}{10}{0}{3}
+\beamer@sectionintoc {4}{\scshape Future Work}{14}{0}{4}
