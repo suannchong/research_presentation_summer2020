@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  1 JUN 2020 08:00
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  2 JUN 2020 12:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1097,27 +1097,52 @@ File: images/signal_processing_board.PNG Graphic file (type bmp)
 
 ] (./presentation_summer2020.toc) [10
 
-] [11
+]
+File: images/gs20_attenuation_simulated.png Graphic file (type bmp)
+<images/gs20_attenuation_simulated.png>
+File: images/energy_deposition.png Graphic file (type bmp)
+<images/energy_deposition.png>
+File: images/xy_spatial_distribution.png Graphic file (type bmp)
+<images/xy_spatial_distribution.png>
+File: images/z_spatial_distribution.png Graphic file (type bmp)
+<images/z_spatial_distribution.png>
+ [11
 
 ]
-Overfull \hbox (5.605pt too wide) in paragraph at lines 339--339
+File: images/gs20_attenuation_simulated.png Graphic file (type bmp)
+<images/gs20_attenuation_simulated.png>
+File: images/energy_deposition.png Graphic file (type bmp)
+<images/energy_deposition.png>
+File: images/xy_spatial_distribution.png Graphic file (type bmp)
+<images/xy_spatial_distribution.png>
+File: images/z_spatial_distribution.png Graphic file (type bmp)
+<images/z_spatial_distribution.png>
+ [12
+
+]
+Overfull \hbox (5.605pt too wide) in paragraph at lines 365--365
  [][] 
  []
 
-[12
+[13
 
 ]
 File: images/pcb_sipm_front.png Graphic file (type bmp)
 <images/pcb_sipm_front.png>
 File: images/pcb_sipm_back.png Graphic file (type bmp)
 <images/pcb_sipm_back.png>
- [13
+ [14
 
-] (./presentation_summer2020.toc) [14
+]
+File: images/SiPM_pinout.png Graphic file (type bmp)
+<images/SiPM_pinout.png>
+ [15
 
-] [15
+] (./presentation_summer2020.toc) [16
 
-] [16
+] [17
+
+] [18
 
 ]
 \tf@nav=\write6
@@ -1129,12 +1154,12 @@ File: images/pcb_sipm_back.png Graphic file (type bmp)
 \tf@snm=\write8
 \openout8 = `presentation_summer2020.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 385.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 385.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 415.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 415.
 
 (./presentation_summer2020.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 385.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 385.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 415.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 415.
 Package rerunfilecheck Info: File `presentation_summer2020.out' has not changed
 .
 (rerunfilecheck)             Checksum: E0BB6053D67A5F244FC177E85463918B.
@@ -1144,12 +1169,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 24725 strings out of 492970
- 472372 string characters out of 6133938
- 558434 words of memory out of 5000000
- 28193 multiletter control sequences out of 15000+600000
+ 24749 strings out of 492970
+ 473050 string characters out of 6133938
+ 560801 words of memory out of 5000000
+ 28212 multiletter control sequences out of 15000+600000
  9734 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  56i,19n,65p,811b,848s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on presentation_summer2020.pdf (16 pages).
+Output written on presentation_summer2020.pdf (18 pages).
