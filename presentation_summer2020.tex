@@ -161,7 +161,7 @@
 
   \begin{columns}
   \begin{column}{0.5\textwidth}
-  Reasons:
+  % Reasons:
   \begin{itemize}
   \item Increasing neutron flux in upcoming instruments
   \item Current detector technology lacks in counting rate capability
@@ -217,7 +217,7 @@
   \
   \\
 
-  It is expected that the detector has an active area of 6.4 $\times$ 6.4 cm$^2$.
+  It is expected that the final detector prototype has an active area of 6.4 $\times$ 6.4 cm$^2$ for this project. Once the final detector prototype has been fully tested and validated, it can be expanded to larger systems of 20 $\times$ 20 cm$^2$.
 
 \end{frame}
 
@@ -236,9 +236,9 @@
   \end{tabular}
 
   \begin{center}
-  % \includegraphics[scale=0.1]{images/detector_frontview1.png}
-  % \includegraphics[scale=0.1]{images/detector_sideview1.png}
-  % \includegraphics[scale=0.1]{images/detector_backview1.png}
+  \includegraphics[width=0.32\textwidth, height=3.5cm]{images/detector_frontview1.png}
+  \includegraphics[width=0.32\textwidth, height=3.5cm]{images/detector_sideview1.png}
+  \includegraphics[width=0.32\textwidth, height=3.5cm]{images/detector_backview1.png}
   \end{center}
 \end{frame}
 
@@ -272,69 +272,99 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Key Results}
-  \begin{center}
-  \begin{columns}
-  \begin{column}{0.33\textwidth}
-  Counting rate
-  \centering
-  \includegraphics[width=\textwidth, height=3cm]{images/counting_rate_HFIR.png}
-  \scriptsize HFIR
-  \includegraphics[width=\textwidth, height=3cm]{images/counting_rate_MURR.png}
-  MURR
-  \end{column}
-  \begin{column}{0.33\textwidth}
-  Gamma sensitivity
-  \centering
-  \includegraphics[width=\textwidth, height=3cm]{images/roughness3.png}
-  \scriptsize 6 $\times$ 6 mm$^2$ 
-  \includegraphics[width=\textwidth, height=3cm]{images/spectra3.png}
-  1 $\times$ 1 mm$^2$
-  MURR
-  \end{column}
-  \begin{column}{0.3\textwidth}
-  \centering
-  Active area \\
+  \frametitle{Key Results: Counting rate}
+  % Counting rate: \\
+  The counting rate of the detector is verified linearly up to the maximum available flux at the beamline.\\
   \
-  \includegraphics[width=\textwidth, height=3cm]{images/signal_processing_board.PNG}
-  \raggedright \scriptsize Requires rearrangement of electronic configuration for scale-up 
-  without introducing dead space within the active area of the detector \\
-  \ \\
-  Exploring commercially available SiPM readout systems.
-  \vspace{0.4cm}
-  \end{column}
-  \end{columns}
-  \end{center}
+
+  \includegraphics[width=0.49\textwidth]{images/counting_rate_HFIR.png}
+  \includegraphics[width=0.49\textwidth]{images/counting_rate_MURR.png}
+
+  \scriptsize There has not been much progress made in terms of validating the maximum counting rate capability of the detector prototype since March update due to COVID-19. 
+  % \ \\
+  I've been assigned to be in Phase 2 of returning to ORNL, so hopefully we can carry out more counting rate test at HFIR in the coming months.
 \end{frame}
 
-\section{\scshape Current Work}
-
-\begin{frame}[c]
-\frametitle{Geant4 simulation: nuclear interaction}
-% Initial validation 
-
+\begin{frame}
+  \frametitle{Key Results: Gamma Sensitivity}
+  % The Time-Over-Threshold (ToT) measurements provides understanding the gamma sensitivity of the detector. \\
+  The Time-Over-Threshold (ToT) measurements provide an insight to the gamma sensitivity of the detector. \\
   \begin{columns}
-  \begin{column}{0.49\textwidth}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/gs20_attenuation_simulated.png}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/energy_deposition.png}
+  \begin{column}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/roughness3.png} \\
+  \scriptsize 6 $\times$ 6 mm$^2$ SiPM  pixel area
+  \includegraphics[width=0.8\textwidth]{images/spectra3.png} \\
+  1 $\times$ 1 mm$^2$ SiPM pixel area
   \end{column}
-  \begin{column}{0.49\textwidth}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/xy_spatial_distribution.png}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/z_spatial_distribution.png}
+  \begin{column}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/roughness1.png} \\
+  \scriptsize surface roughness
+  \includegraphics[width=0.8\textwidth]{images/roughness2.png} \\
+  type of reflector
   \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}
-\frametitle{Geant4 simulation: optical properties}
+  \frametitle{Key Results: Active Area}
+  \scriptsize Current detector active area is 1.6 $\times$ 1.6 cm$^2$. In order to achieve an active area is 6.4 $\times$ 6.4 cm$^2$ without introducing dead space within the area, the SiPMs need to be arranged adjacent to one another forming a configurantion of 4 $\times$ 4 SiPM arrays. \\
+  \
+
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/signal_processing_board.PNG}
+\end{frame}
+
+\section{\scshape Current Work}
+
+\begin{frame}[c]
+\frametitle{Geant4 Simulation}
+% Initial validation 
+In order to better understand the ToT spectrum with different surface finishes (roughness/reflector) as well as the mismatch between scintillator area and photosensor area, a Geant4 simulation is developed. \\
+  \
+
+  \includegraphics[width=0.49\textwidth, height=5cm]{images/singlepixel.png}
+  \includegraphics[width=0.49\textwidth, height=5cm]{images/pixelarray.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Geant4 Simulation: Initial Validation }
+
+  It is important to make sure that particle source is properly defined. Shown here is a uniform monoenergetic neutron source of 25 meV using the Geant4 General Particle Source (GPS). \\
+  \ \\
+
+  \centering
+  \includegraphics[width=0.49\textwidth,height=4cm]{images/xy_spatial_distribution.png}
+  \includegraphics[width=0.49\textwidth,height=4cm]{images/z_spatial_distribution.png}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Geant4 Simulation: Initial Validation}
+  From the datasheet, it is said that 1 mm thick of GS20 can achieve a detection efficiency of 75\% and 2 mm thick of GS20 can achieve 95\%.
+  \
+  The simulation also shows the energy deposition from the neutron capture on $^6$Li.
+  $$ n + ^6Li \rightarrow \alpha ~(2.73 ~MeV) + ^3H ~(2.05~MeV) $$
+  \ \\
+  \
+
+  \centering
+  \includegraphics[width=0.49\textwidth,height=4cm]{images/gs20_attenuation_simulated.png}
+  \includegraphics[width=0.49\textwidth,height=4cm]{images/energy_deposition.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Geant4 Simulation: Work in Progress}
   \begin{columns}
   \begin{column}{0.49\textwidth}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/gs20_attenuation_simulated.png}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/energy_deposition.png}
+  \scriptsize The optical properties of the scintillator has been included. In order to simulate the optical surface of the scintillator, LUT data from G4REALSURFACEDATA are used. \\
+ \ \\
+
+  \includegraphics[width=\textwidth,height=4.5cm]{images/opticalproperties_geant4.png}
   \end{column}
   \begin{column}{0.49\textwidth}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/xy_spatial_distribution.png}
-  \includegraphics[width=\textwidth,height=3.5cm]{images/z_spatial_distribution.png}
+  \includegraphics[width=\textwidth,height=6.5cm]{images/energy_spectrum_opticalphotons.jpg}
   \end{column}
   \end{columns}
 \end{frame}
@@ -366,7 +396,7 @@ Possible readout systems as an alternative solution: \\
 
 \begin{frame}
 \frametitle{Board Layout}
- Printed circuit board (PCB) layout for SiPM connector. Some SiPM comes with a connector, some comes with ball grid array (BGA). \\
+ \scriptsize Printed circuit board (PCB) layout for SiPM break-out board (BOB). Some SiPM comes with a connector, some comes with ball grid array (BGA). Having a BOB allows the SiPM to be readily mounted to other boards that come with the readout module. \\
 \ \\
   \includegraphics[width=0.49\textwidth]{images/pcb_sipm_front.png}
   \includegraphics[width=0.49\textwidth]{images/pcb_sipm_back.png}
@@ -374,6 +404,8 @@ Possible readout systems as an alternative solution: \\
 
 \begin{frame}
   \frametitle{SiPM BGA Connections}
+  \scriptsize Another reason to layout a BOB is to allow easy routing of many unordered traces. It's good for book keeping. \\
+  \
   \includegraphics[width=\textwidth]{images/SiPM_pinout.png}
 \end{frame}
 
