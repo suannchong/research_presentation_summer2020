@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{gs20}
+6-lithium enriched glass scintillators: Products: Scintacor.
+
+\bibitem{geant4_doc}
+Geant4 book for application developers.
+
+\bibitem{janecek_2012}
+M.~Janecek.
+\newblock Reflectivity spectra for commonly used reflectors.
+\newblock {\em IEEE Transactions on Nuclear Science}, 59(3):490–497, 2012.
+
+\bibitem{janecek_moses_2008}
+Martin Janecek and William~W. Moses.
+\newblock Measuring light reflectance of bgo crystal surfaces.
+\newblock {\em IEEE Transactions on Nuclear Science}, 55(5):2443–2449, 2008.
+
+\bibitem{janecek_moses_2010}
+Martin Janecek and William~W. Moses.
+\newblock Simulating scintillator light collection using measured optical
+  reflectance.
+\newblock {\em IEEE Transactions on Nuclear Science}, 57(3):964–970, 2010.
+
+\bibitem{roncali_cherry_2013}
+Emilie Roncali and Simon~R Cherry.
+\newblock Simulation of light transport in scintillators based on 3d
+  characterization of crystal surfaces.
+\newblock {\em Physics in Medicine and Biology}, 58(7):2185–2198, 2013.
+
+\bibitem{roncali_stockhoff_cherry_2017}
+Emilie Roncali, Mariele Stockhoff, and Simon~R Cherry.
+\newblock An integrated model of scintillator-reflector properties for advanced
+  simulations of optical transport.
+\newblock {\em Physics in Medicine and Biology}, 62(12):4811–4830, 2017.
+
+\bibitem{spowart_1976}
+A.r. Spowart.
+\newblock Neutron scintillating glasses: Part 1.
+\newblock {\em Nuclear Instruments and Methods}, 135(3):441–453, 1976.
+
+\end{thebibliography}

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: presentation.aux
+The style file: plain.bst
+Database file #1: bib/bib.bib
+Warning--to sort, need author or key in geant4_doc
+Warning--to sort, need author or key in gs20
+You've used 8 entries,
+            2118 wiz_defined-function locations,
+            544 strings with 5080 characters,
+and the built_in function-call counts, 2359 in all, are:
+= -- 224
+> -- 73
+< -- 0
++ -- 31
+- -- 22
+* -- 177
+:= -- 373
+add.period$ -- 20
+call.type$ -- 8
+change.case$ -- 35
+chr.to.int$ -- 0
+cite$ -- 10
+duplicate$ -- 80
+empty$ -- 227
+format.name$ -- 22
+if$ -- 498
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 6
+newline$ -- 39
+num.names$ -- 12
+pop$ -- 33
+preamble$ -- 1
+purify$ -- 27
+quote$ -- 0
+skip$ -- 65
+stack$ -- 0
+substring$ -- 221
+swap$ -- 8
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 32
+warning$ -- 2
+while$ -- 18
+width$ -- 9
+write$ -- 78
+(There were 2 warnings)
