@@ -167,7 +167,7 @@
 Users indicate the value of polish, where a random point is generated in a sphere of radius (1-polished), and the corresponding vector is added to the average surface nominal normal as the micro-facet normal. A specular reflection is thereafter calculated based on the microfacet orientation. \cite{geant4_doc} \cite{janecek_moses_2010} \\
 \ \\
 
-\item unified\\
+\item unified \\
  Users specify a parameter $SigmaAlpha$, which defines the standard deviation of the Gaussian distribution of micro-facets around the average surface normal. \cite{geant4_doc} Four kinds of surface reflections are possible: specular, spike, lobe, backscatter and Lambertian. \cite{janecek_moses_2010} \\
  \ \\
 
@@ -236,20 +236,33 @@ Optical Monte Carlo software such as DETECT, Litrani, Geant4 or GATE allow the o
 \section{\scshape Simulation Model}
 \begin{frame}
 \frametitle{GEANT4 Simulation Model}
+\scriptsize
 Goals:
 \begin{itemize}
-\item Light collection efficiency based on crystal geometry, surface finish, reflector type and coupling method.
-\item Light sharing of monolithic and pixelated scintillators across array of photodetectors
+\item Compare light collection based on different surface treatments (surface roughness, reflector type, coupling method) 
+% Light collection efficiency based on crystal geometry, surface finish, reflector type and coupling method.
+\item Estimate light sharing of monolithic scintillators over pixelated photodetectors
 \end{itemize}
 \ \\
 \ \\
 Key Model Parameters:
 \begin{itemize}
-\item Source: monoenergetic neutron beam at 25 meV (1.8 \AA) 
+\item Source: 
+  \begin{itemize}
+    \scriptsize
+  \item monoenergetic neutron beam at 25 meV (1.8 \AA) 
+  \item optical photons at 3.19 eV (395 nm)
+  \end{itemize}
 \item Geometry: single pixel and pixel array (8 $\times$ 8 pixels)
-\item Material: $^6$Li-enriched glass scintillator (GS 20, Scintacor)
-\item Physics list: $\leq$ 20 MeV neutron, G4OpticalPhysics 
-% \item Output: ROOT files
+\item Material: $^6$Li-enriched glass scintillator (GS20, Scintacor)
+\item Physics lists:
+  \begin{itemize}
+    \scriptsize
+  \item QGSP\_BERT\_HP \\ energy of primary particle < 5 GeV, detailed neutron transport (< 20 MeV) 
+  \item G4OpticalPhysics \\ optical photon transportation
+  \end{itemize}
+\item Output: ROOT files
+\item Data Analysis: Python (Use uproot to read ROOT files)
 \end{itemize}
 \end{frame}
 
@@ -363,125 +376,167 @@ $^{\dagger\dagger}$ at thermal neutron energy (2meV) \\
 \centering
 \begin{tabular}{c | c }
 % \hline
- surface type & dielectric-dielectric, dielectric-LUT $^\dagger$ \\
- &  dielectric-LUTDAVIS $^\ddagger$\\
- model &  unified, LUT, DAVIS   \\
+ surface type & dielectric-dielectric \\ %, dielectric-LUT $^\dagger$ \\
+ % &  dielectric-LUTDAVIS $^\ddagger$\\
+ model &  unified \\
+ % , LUT, DAVIS   \\
  surface finish & rough, polished \\
- reflector type & teflon (lambertian), ESR (specular) \\
- coupling method & air \\
- crystal thickness & 1, 2, 6, 20 mm \\
+ reflector type & air, TiO$_2$ \\ %teflon (lambertian), ESR (specular) \\
+ % coupling method & air \\
+ crystal thickness & 2 mm \\%1, 2, 6, 20 mm \\
  % \hline
 \end{tabular}
 \end{block}
 
-$^\dagger$ LUT model is based on BGO crystal. \cite{janecek_moses_2008} \\
-$^\ddagger$ DAVIS model is based on LYSO crystal \cite{roncali_cherry_2013} \\
+% $^\dagger$ LUT model is based on BGO crystal. \cite{janecek_moses_2008} \\
+% $^\ddagger$ DAVIS model is based on LYSO crystal \cite{roncali_cherry_2013} \\
 % $^\dagger\dagger$ unified model
 
-\begin{block}{Parameters for unified model}
+\begin{block}{Parameters for unified model \cite{janecek_moses_2010}}
 \centering
 \begin{tabular}{c | c}
 $SigmaAlpha$  & 0.0227 rad/1.3$^o$ (polished) \\
 & 0.209 rad / 12$^o$ (rough) \\
+$REFLECTIVITY$ $^{\dagger}$ & 0.05 (air) \\
+& 0.89 (TiO$_2$) \\
+$RINDEX$ $^{\dagger}$ & 1.0 (air) \\
+& 1.35 (TiO$_2$) \\
+Reflection Type Probability $^{\dagger}$ & 100\% Diffuse lobe, 0\% specular lobe \\
+& 0\% specular spike, 0\% backscatter \\
 \end{tabular}
 \end{block}
+\centering 
+\scriptsize $^{\dagger}$ Assume constant over all optical photon energies
+\end{frame}
+
+
+
+
+\section{\scshape Results and Discussions}
+
+\begin{frame}
+\frametitle{Detector Setup: Light Collection}
+\scriptsize 
+A single pixel is used to study the light collection with different surface treatments and scintillator thicknesses. Figure below shows a 2 mm x 2 mm x 2 mm scintillator cube with polished surfaces coupled to a layer of reflective coating. \\ 
+\ \\
+A neutron is emitted a distance away from the scintillator. Neutron is captured in the scintillator and approximately 6,000 photons are emitted isotropically. \\
+\ \\
+\centering
+\includegraphics[width=0.48\textwidth, height=0.5\textheight]{images/scint_refl1.png}
+\includegraphics[width=0.48\textwidth, height=0.5\textheight]{images/scint_refl_neutron.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Validation: Neutron Capture}
+  \scriptsize
+  Here are an additional few plots that illustrate the expected results of neutron capture and energy deposited in the scintillator: \\
+  \ \\
+  \centering
+  X-Y distribution: uniform distribution of neutron capture \\
+  Z distribution: neutron attenuation of GS20 at 25 meV  \\
+  Energy distribution: energy deposited by the reaction productions of neutron capture \\
+   $^3$H (2.73 MeV) and $\alpha$ (2.05 MeV) \\
+  \ \\
+  
+  \includegraphics[width=0.32\textwidth, height=0.45\textheight]{images/xy_distribution1.png}
+  \includegraphics[width=0.32\textwidth, height=0.45\textheight]{images/z_distribution1.png}
+  \includegraphics[width=0.32\textwidth, height=0.45\textheight]{images/energy_distribution1.png}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Validation: Optical Transport}
+  \scriptsize 
+  To make sure that the simulation of optical transport behaves as expected, 6,000 photons are emitted isotropically at 7 $\times$ 7 $\times$ 7 = 343 positions within the scintillator volume. Optical photons are used instead of neutrons to speed up simulation.\\
+  \ \\
+  Photodetector is positioned at z = 1.0 mm, where most photons are detected, as expected. The scintillator cube has a polished surface with no reflectors coupled to it.   \\
+  \ \\
+  \centering
+  \includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/distribution.png}
+  \includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/distribution1.png}
+  \ \\
+\end{frame}
+
+\begin{frame}
+  \frametitle{Metric: Which is Better?}
+  \scriptsize
+  In Time-over-Threshold (ToT) spectrum, neutron peak with higher ToT values is better as it gives a better separation between neutron peak and gamma peak. \\
+  \ \\
+  Experimental data: \\
+  % \ \\
+  \centering 
+  \includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/roughness3.png}
+  \includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/spectra3.png}
+  \flushleft~~~~~~~~~~~~~~~~~ 6 $\times$ 6 mm$^2$ SiPM \hspace{4cm} 1 $\times$ 1 mm$^2$ SiPM \\
+  \ \\
+  $^*$ The separation difference between neutron peak and gamma peak has to do with the active area of the SiPM. If the active area of SiPM is smaller than the area of the scintillator surface coupled to the SiPM (2 $\times$ 2 mm$^2$), less photons are collected as a results.  
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Surface Treatments I}
+\scriptsize
+The simulation model is able to produce results that are consistent with experimental data when the scintillator surface is polished. \\
+\ \\
+Since the experimental data is not normalized, results can only be compared in relative. Both experimental and simulated results show that scintillator coupled with reflective coating have higher ToT values than the ones without. \\
+\ \\
+\centering 
+\includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/comparison_polishedair_polishedtioair.png}
+\includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/roughness2.png}
+\flushleft~~~~~~~~~~~~~~~~~~~~~ Simulated result \hspace{3cm} Experimental result
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Surface Treatments II}
+\scriptsize
+The simulation model is not able to model rough surfaces well. This result is expected and published in numerous articles. \cite{janecek_moses_2008} \cite{janecek_moses_2010} \cite{roncali_cherry_2013} \cite{roncali_stockhoff_cherry_2017}  \\
+\ \\
+The next slide will show published result from \cite{janecek_moses_2010} that shows the discrepancy between simulated data and experimental data using Geant4 unified model. \\
+\ \\
+\centering
+\includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/comparison_groundair_polishedair.png}
+\includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/roughness1.png}
+\flushleft~~~~~~~~~~~~~~~~~~~~~ Simulated result \hspace{3cm} Experimental result
+% \includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/bgo_rough.png}
+% \includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/bgo_polished.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Surface Treatments III}
+\scriptsize
+The original code (using Geant4 unified model) perform better in simulating polished surfaces than rough surfaces as the discrepancies between simulated data and measured data are smaller. \\
+\ \\
+Using Geant4 unified model, the simulated light yield tends to be higher for rough surfaces than for smooth surfaces. Meanwhile, measured data generally shows that the light yield for polished surfaces are higher than rough surfaces. 
+\ \\
+\centering
+\includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/bgo_rough.png}
+\includegraphics[width=0.49\textwidth, height=0.6\textheight]{images/bgo_polished.png}
+\flushleft~~~~~~~~~~~~~~~~~~~~~ Rough \hspace{5cm} Polished
+\end{frame}
+
+\begin{frame}
+  \frametitle{Results: Scintillator Thickness}
+  \scriptsize
+  The effect of aspect ratio on the light output of scintillator. It has been demonstrated that crystals shaped in thin rods have a lower light output as compared to bulky or sliced crystals. \cite{pauwels_2012} \\
+  \ \\
+  Since our simulation model works well with polished surfaces, we only investigated two polished surface treatments. The simulated result is consistent with the result published in \cite{pauwels_2012}. \\
+  \ \\
+  \centering
+  \includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/light_yield_thicknesses.png} 
+  \includegraphics[width=0.49\textwidth, height=0.49\textheight]{images/gs20_attenuation_simulated.png}
+  \flushleft Experimental validation is needed to find the optimum scintillator thickness for maximum light output.
 \end{frame}
 
 \begin{frame}
 \frametitle{Simulated Detector Setup}
-\scriptsize \centering
-single pixel (light collection efficiency) \\
-\includegraphics[width=0.48\textwidth, height=0.4\textheight]{images/scint_refl1.png}
-\includegraphics[width=0.48\textwidth, height=0.4\textheight]{images/scint_refl_neutron.png}
-pixel array (light sharing)\\
-\includegraphics[width=0.48\textwidth, height=0.4\textheight]{images/monolithic_pixelarray.png}
-\includegraphics[width=0.48\textwidth, height=0.4\textheight]{images/monolithic_pixelarray1.png}
-\end{frame}
-
-
-\section{\scshape Results and Discussions}
-\begin{frame}
-\frametitle{Results: Light Collection Efficiency}
-% \scriptsize 
-To optimize scintillator parameters to maximize the light collection efficiency, the light collection efficiency is compared for different scintillator surface treatments and aspect ratios. \\
+\scriptsize
+Having pixelated scintillator arrays often requires cutting, polishing, applying reflective coating and optical grease and assembling scintillator arrays to couple to SiPM, hence results in higher cost and more laborious. \ \\
 \ \\
-
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\includegraphics[width=\textwidth]{images/aspect_ratio.png}
-\end{column}
-\begin{column}{0.5\textwidth}
-The aspect ratio of a geometric shape is the ratio of its sizes in different dimensions. \\
+We are interested to investigate the effect of monolithic scintillator thickness on the crosstalk/light sharing between pixels. \\
 \ \\
-Here, we will talk about the aspect ratio of a cuboid (assume that width and height are of equal dimension)
-$$ aspect ~ratio = \frac{length}{width} $$ 
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\frametitle{Results: Validation Using Published Results}
-\centering
-\includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/bgo_lightyield_polished1.png}
-\includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/bgo_lightyield_rough1.png}
-\scriptsize  \flushleft~~~~~~~~~~~~~~~~~~~~~ Polished crystal \hspace{4cm} Rough crystal
-\begin{block}{Findings}
-\begin{itemize}
-  \item For polished surfaces, having optical reflectors generally provides better light collection.
-  \item For rough surfaces, having reflectors does not necessary help with better light collection.
-  \item "Surface roughness proved to be the most important parameter when choosing crystal setup. The reflector choice was of less importance and of almost no consequence for rough-cut surfaces." \cite{janecek_moses_2008}
-\end{itemize}
-\end{block}
-% \includegraphics[width=0.49\textwidth, height=0.45\textheight]{images/BGO_lightyield_LUT1.png}
-\end{frame}
-
-\begin{frame}
-\scriptsize
-Below shows the comparison between experimental measurements ($Measured$), simulated results using LUT ($Our ~code$)and Geant4 unified model ($Original~code$), from Berkeley Lab. \cite{janecek_2012} \\
-The BGO crystal used has a dimension of 3 $\times$ 10 $\times$ 30 mm$^3$.
-\scriptsize  \flushleft~~~~~~~~~~~~~~~~~~~~~ Polished crystal \hspace{4cm} Rough crystal
-\includegraphics[width=0.49\textwidth, height=0.4\textheight]{images/bgo_polished.png}
-\includegraphics[width=0.49\textwidth, height=0.4\textheight]{images/bgo_rough.png}
-\includegraphics[width=0.49\textwidth, height=0.4\textheight]{images/bgo_setup.png}
-\includegraphics[width=0.49\textwidth, height=0.4\textheight]{images/bgo_orientation.png}
-\end{frame}
-
-\begin{frame}
-\begin{columns}
-\begin{column}{0.6\textwidth}
-\includegraphics[width=\textwidth, height=0.49\textheight]{images/lyso_polished.png}
-\includegraphics[width=0.95\textwidth, height=0.49\textheight]{images/lyso_rough.png}
-\end{column}
-\begin{column}{0.39\textwidth}
-\scriptsize
-The LYSO crystal used has a dimension of 3 $\times$ 3 $\times$ 20 mm$^3$. These measurements were published from UC Davis.\cite{roncali_stockhoff_cherry_2017}
-% Comparison between simulated results and experimental measurements showed consistent results with the previous publication. 
-
-\begin{block}{Findings}
-\begin{itemize}
-\item Showed consistent results that thicker scintillators (larger aspect ratio) has better light collection with the coupling of optical reflectors to polished surfaces. 
-\item It was also measured that as the thinner scintillators (smaller aspect ratio) collect light better in rough surfaces. 
-\item However, it showed that coupling of optical reflectors makes a different in light collection for rough surfaces. This observation is supported by another publication from CERN on LYSO scintillator. \cite{pauwels_2012}
-\end{itemize}
-\end{block}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\scriptsize
-\begin{block}{Discussion}
-\begin{itemize}
-\item Both publications agree that scintillators with larger aspect ratio performs better in light collection when the scintillator surfaces are polished and coupled to optical reflectors.
-\item Simulated and measured results seem to suggest that scintillators with smaller aspect ratio may perform better in rough surfaces in certain cases.
-\item Discrepancy in light collection is found in both publications for rough scintillator surfaces with and without optical reflectors.
-\end{itemize}
-\end{block}
-% Next steps:
-% \begin{itemize}
-%   \item Measure the reflectivity of GS20 crystal with different surface treatments 
-%   \item Perform experimental measurements on actual detector setup with different scintillator surface treatments and aspect ratios
-% \end{itemize}
+\centering 
+\includegraphics[width=0.48\textwidth, height=0.49\textheight]{images/monolithic_pixelarray.png}
+\includegraphics[width=0.48\textwidth, height=0.49\textheight]{images/monolithic_pixelarray1.png}
 \end{frame}
 
 \begin{frame}
@@ -527,32 +582,46 @@ Scintillator thickness (mm) & Crosstalk (\%) & Target (counts) \\
 \begin{frame}
 \frametitle{Conclusion}
 \scriptsize
-Key results:
 \begin{itemize}
-\item Scintillators with larger aspect ratio have higher light collection efficiency when the scintillator surfaces are polished and coupled to optical reflectors
-\item Scintillators with smaller aspect ratio may have better light collection when the scintillator surfaces remain unpolished, rough-cut. 
+\item Geant4 unified model can model polished surfaces relatively well, but performs rather poorly on rough surfaces. This may be due to the model description on surface roughness is not a true representation of the actual surfaces. 
+\item The aspect ratio of the scintillator affects the light output. Crystal shaped in thin rods have a  lower light output as compared to bulky or sliced crystals. 
 \item Monolithic scintillator in a pixel array configuration results in much larger cross talk between photodetector pixels than pixelated scintillator, even with scintillator thickness of 100 $\mu$m.
 \end{itemize}
 
-Challenges in optical simulation using GEANT4:
+\begin{block}{Key results}
 \begin{itemize}
-\item A simplified description of rough surfaces as an ensemble of micro-facets determined by the distrubution of Gaussian distribution may not be the true representation of surface roughness.
-\item Optical reflectance of a material may not be a linear combination of backscatter spike, specular spike, specular lobe and Lambertian reflections. 
-\item Two published results demonstrated the discrepancies between GEANT4 unified models and experimental data and obtained better accuracy by using measured reflectance data in simulation modelling without making assumptions about the surface roughness.
+  \item Coupling of reflective coating helps with light collection for polished surfaces, evidenced by both experimental and simulated results.
+  \item Segmentation in scintillator is necessary to prevent crosstalk/light sharing between pixels and increase the counting rate of the detector. 
 \end{itemize}
+\end{block}
+% Challenges in optical simulation using GEANT4:
+% \begin{itemize}
+% \item A simplified description of rough surfaces as an ensemble of micro-facets determined by the distrubution of Gaussian distribution may not be the true representation of surface roughness.
+% \item Optical reflectance of a material may not be a linear combination of backscatter spike, specular spike, specular lobe and Lambertian reflections. 
+% \item Two published results demonstrated the discrepancies between GEANT4 unified models and experimental data and obtained better accuracy by using measured reflectance data in simulation modelling without making assumptions about the surface roughness.
+% \end{itemize}
+\vfill
 \end{frame}
 
 \begin{frame}
 \frametitle{Future Work}
 \scriptsize
-The simulation model developed was able to produce consistent results with published data when using BGO as the scintillator. If experimental reflectance data of GS20 is obtained, correct optical transport modelling can be made. \\
-\ \\
-
-Since there aren't published result that a direct comparison can be made, experimental data is needed in order to validate the simulation model: \\
-\ \\
 \begin{itemize}
-  \item Measure the reflectivity of GS20 crystal with different surface treatments 
-  \item Perform experimental measurements on actual detector setup with different scintillator surface treatments and aspect ratios
+  \item Lack of experimental data \\
+    \begin{itemize}
+      \scriptsize
+      \item Light output of different scintillator thicknesses to find the optimal scintillator thickness for maximum light collection
+      \item Effect of monolithic scintillator thickness on crosstalk/light sharing between pixels to validate that pixelation in scintillator is necessary for minimal crosstalk and high counting rate
+     
+    \end{itemize}
+
+  \item Interest of time \\
+  \begin{itemize}
+    \scriptsize
+    \item The reflectance and transmitance of light on the scintillator with different surface treatments can be measured and incorporated in the look up table (LUT) model in Geant4. 
+    \item Better results has been shown in modelling rough surfaces. 
+    \item Future optical transport simulation on GS20 can be available to public. 
+  \end{itemize}
 \end{itemize}
 
 \vfill
